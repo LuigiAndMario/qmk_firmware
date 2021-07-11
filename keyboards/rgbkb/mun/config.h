@@ -93,3 +93,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TOUCH_UPDATE_INTERVAL 33
 #define OLED_UPDATE_INTERVAL 33
 #define TAP_CODE_DELAY 5
+
+// Unicode
+#define UNICODE_CYCLE_PERSIST false // Always starts in mac mode
+#define UNICODE_SELECTED_MODES UC_MAC, UC_WINC
+
+// Bootmagic
+// The master (the one that gets plugged) gets turned on first, and the slave after.
+// As such, only keys on the master can be used for bootmagic.
+// This allows to go to layer 1 (Windows) by using the right half as master and left as slave 
+#define BOOTMAGIC_KEY_DEFAULT_LAYER_1 KC_6

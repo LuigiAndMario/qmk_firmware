@@ -5,7 +5,7 @@
 
 enum keymap_layers {
     _QWERTY,
-    _MACQWERTY,
+    _WINQWERTY,
     _COLEMAK,
     _GAME,
     _FN,
@@ -24,7 +24,7 @@ enum keymap_keycodes {
 
 // Default Layers
 #define QWERTY    DF(_QWERTY)
-#define MACQWERTY DF(_MACQWERTY)
+#define WINQWERTY DF(_WINQWERTY)
 #define COLEMAK   DF(_COLEMAK)
 #define GAME      DF(_GAME)
 
@@ -41,6 +41,7 @@ enum keymap_keycodes {
 #define FN_ESC   LT(_FN, KC_ESC)
 
 // French chars
+/*
 enum unicode_names {
   EAIG,
   EAIG_M,
@@ -75,12 +76,44 @@ const uint32_t PROGMEM unicode_map[] = {
   [CCDL_M] = 0x00C7,    // 13 Ç
 };
 
+#define EAIG_m  UC(0x00E9)     // 0  é
+#define EAIG_M  UC(0x00C9)    // 1  É
+#define EGRV_m  UC(0x00E8)     // 2  è
+#define EGRV_M  UC(0x00C8)    // 3  È
+#define ECRC_m  UC(0x00EA)     // 4  ê
+#define ECRC_M  UC(0x00CA)    // 5  Ê
+#define ETRM_m  UC(0x00EB)     // 6  ë
+#define ETRM_M  UC(0x00CB)    // 7  Ë
+#define OCRC_m  UC(0x00F4)     // 8  ô
+#define OCRC_M  UC(0x00D4)    // 9  Ô
+#define AGRV_m  UC(0x00E0)     // 10 Â
+#define AGRV_M  UC(0x00C0)    // 11 À
+#define CCDL_m  UC(0x00E7)     // 12 ç
+#define CCDL_M  UC(0x00C7)    // 13 Ç
+//*/
+#define EAIG_m  0x00E9     // 0  é
+#define EAIG_M  0x00C9    // 1  É
+#define EGRV_m  0x00E8     // 2  è
+#define EGRV_M  0x00C8    // 3  È
+#define ECRC_m  0x00EA     // 4  ê
+#define ECRC_M  0x00CA    // 5  Ê
+#define ETRM_m  0x00EB     // 6  ë
+#define ETRM_M  0x00CB    // 7  Ë
+#define OCRC_m  0x00F4     // 8  ô
+#define OCRC_M  0x00D4    // 9  Ô
+#define AGRV_m  0x00E0     // 10 Â
+#define AGRV_M  0x00C0    // 11 À
+#define CCDL_m  0x00E7     // 12 ç
+#define CCDL_M  0x00C7    // 13 Ç
 
+#define EAIG    XP(EAIG_m, EAIG_M)
+#define EGRV    XP(EGRV_m, EGRV_M)
+#define ECRC    XP(ECRC_m, ECRC_M)
+#define ETRM    XP(ETRM_m, ETRM_M)
+#define OCRC    XP(OCRC_m, OCRC_M)
+#define AGRV    XP(AGRV_m, AGRV_M)
+#define CCDL    XP(CCDL_m, CCDL_M)
 
-// initialize unicode mode
-void eeconfig_init_user(void) {
-  set_unicode_input_mode(UC_WINC);
-}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /* QWERTY
@@ -107,18 +140,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,   KC_RBRC,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLASH,
         FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   ACCENTS,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LPRN,   KC_RPRN,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
-        KC_LCTL, KC_LGUI, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
+        KC_LGUI, KC_LCTL, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RGUI,
 
         KC_VOLU, KC_VOLD, KC_VOLU, KC_VOLD,                                                          KC_PGUP, KC_PGDN, KC_PGUP, KC_PGDN,
         KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, KC_MPRV,                                        RGB_HUI, RGB_HUD, RGB_RMOD,RGB_TOG, RGB_MOD
     ),
 
-    [_MACQWERTY] = LAYOUT(
+    [_WINQWERTY] = LAYOUT(
         KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS,   KC_EQL,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,   KC_RBRC,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLASH,
-        FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   OTHER,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   ACCENTS,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LPRN,   KC_RPRN,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
-        KC_LGUI, KC_LCTL, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RGUI,
+        KC_LCTL, KC_LGUI, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
 
         KC_VOLU, KC_VOLD, KC_VOLU, KC_VOLD,                                                          KC_PGUP, KC_PGDN, KC_PGUP, KC_PGDN,
         KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, KC_MPRV,                                        RGB_HUI, RGB_HUD, RGB_RMOD,RGB_TOG, RGB_MOD
@@ -189,21 +222,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_ACCENTS] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_1,    KC_2,    KC_3,    XP(4,5), XP(0,1), _______, _______, XP(0,1), XP(4,5), KC_1,    KC_2,    KC_3,    _______,
-        _______, KC_4,    KC_5,    KC_6,    XP(8,9), XP(2,3), _______, _______, XP(2,3), XP(8,9), KC_4,    KC_5,    KC_6,    _______,   
-        _______, KC_7,    KC_8,    KC_9,  XP(12,13),XP(10,11),_______, _______,XP(10,11),XP(12,13),KC_7,   KC_8,    KC_9,    _______,
-        RESET1 , KC_0,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    RESET1 ,
+        _______, KC_1   , KC_2   , KC_3   , ECRC   , EAIG   , _______, _______, EAIG   , ECRC   , KC_1   , KC_2   , KC_3,    _______,
+        _______, KC_4   , KC_5   , KC_6   , OCRC   , EGRV   , _______, _______, EGRV   , OCRC   , KC_4   , KC_5   , KC_6,    _______,   
+        UC_MOD , KC_7   , KC_8   , KC_9   , CCDL   , AGRV   ,_______, _______,  AGRV   , CCDL   , KC_7   , KC_8   , KC_9,    UC_MOD ,
+        RESET1 , KC_0   , KC_LALT, _______, _______, _______, _______, _______, _______, _______, _______, KC_LALT, KC_0,    RESET1 ,
 
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
         _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______
     ),
-/*
+///*
     [_OTHER] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_1,    KC_2,    KC_3,    XP(4,5), XP(0,1), _______, _______, XP(0,1), XP(4,5), KC_1,    KC_2,    KC_3,    _______,
-        _______, KC_4,    KC_5,    KC_6,    XP(8,9), XP(2,3), _______, _______, XP(2,3), XP(8,9), KC_4,    KC_5,    KC_6,    _______,   
-        _______, KC_7,    KC_8,    KC_9,  XP(12,13),XP(10,11),_______, _______,XP(10,11),XP(12,13),KC_7,   KC_8,    KC_9,    _______,
-        RESET1 , KC_0,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    RESET1 ,
+        _______, KC_1   , KC_2   , KC_3   , ECRC   , EAIG   , _______, _______, EAIG   , ECRC   , KC_1   , KC_2   , KC_3,    _______,
+        _______, KC_4   , KC_5   , KC_6   , OCRC   , EGRV   , _______, _______, EGRV   , OCRC   , KC_4   , KC_5   , KC_6,    _______,   
+        _______, KC_7   , KC_8   , KC_9   , CCDL   , AGRV   ,_______, _______,  AGRV   , CCDL   , KC_7   , KC_8   , KC_9,    _______,
+        RESET1 , KC_0   , KC_LALT, _______, _______, _______, _______, _______, _______, _______, _______, KC_LALT, KC_0,    RESET1 ,
 
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
         _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______
