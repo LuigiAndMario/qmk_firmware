@@ -1,8 +1,11 @@
 #include QMK_KEYBOARD_H
-// To exclude accents, set UNICODE_ENABLE = no in rules.mk
+// Modifications in rules.mk:
+// UNICODE_ENABLE
+// BOOTMAGIC_ENABLE
 
 enum keymap_layers {
     _QWERTY,
+    _MACQWERTY,
     _COLEMAK,
     _GAME,
     _FN,
@@ -20,9 +23,10 @@ enum keymap_keycodes {
 };
 
 // Default Layers
-#define QWERTY   DF(_QWERTY)
-#define COLEMAK  DF(_COLEMAK)
-#define GAME     DF(_GAME)
+#define QWERTY    DF(_QWERTY)
+#define MACQWERTY DF(_MACQWERTY)
+#define COLEMAK   DF(_COLEMAK)
+#define GAME      DF(_GAME)
 
 // Momentary Layers
 #define FN       MO(_FN)
@@ -101,9 +105,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT(
         KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS,   KC_EQL,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,   KC_RBRC,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLASH,
-        FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   OTHER,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   ACCENTS,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LPRN,   KC_RPRN,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
         KC_LCTL, KC_LGUI, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RCTL,
+
+        KC_VOLU, KC_VOLD, KC_VOLU, KC_VOLD,                                                          KC_PGUP, KC_PGDN, KC_PGUP, KC_PGDN,
+        KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, KC_MPRV,                                        RGB_HUI, RGB_HUD, RGB_RMOD,RGB_TOG, RGB_MOD
+    ),
+
+    [_MACQWERTY] = LAYOUT(
+        KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_MINS,   KC_EQL,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LBRC,   KC_RBRC,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLASH,
+        FN_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    ACCENTS,   OTHER,     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LPRN,   KC_RPRN,   KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_SFTENT,
+        KC_LGUI, KC_LCTL, KC_LALT, RGB_TOG, ADJUST,  KC_SPC,  KC_DEL,    KC_ENT,    KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_RGUI,
 
         KC_VOLU, KC_VOLD, KC_VOLU, KC_VOLD,                                                          KC_PGUP, KC_PGDN, KC_PGUP, KC_PGDN,
         KC_VOLD, KC_VOLU, KC_MNXT, KC_MPLY, KC_MPRV,                                        RGB_HUI, RGB_HUD, RGB_RMOD,RGB_TOG, RGB_MOD
@@ -177,12 +192,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_1,    KC_2,    KC_3,    XP(4,5), XP(0,1), _______, _______, XP(0,1), XP(4,5), KC_1,    KC_2,    KC_3,    _______,
         _______, KC_4,    KC_5,    KC_6,    XP(8,9), XP(2,3), _______, _______, XP(2,3), XP(8,9), KC_4,    KC_5,    KC_6,    _______,   
         _______, KC_7,    KC_8,    KC_9,  XP(12,13),XP(10,11),_______, _______,XP(10,11),XP(12,13),KC_7,   KC_8,    KC_9,    _______,
-        _______, KC_0,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    _______,
+        RESET1 , KC_0,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    RESET1 ,
 
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
         _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______
     ),
-///*
+/*
     [_OTHER] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, KC_1,    KC_2,    KC_3,    XP(4,5), XP(0,1), _______, _______, XP(0,1), XP(4,5), KC_1,    KC_2,    KC_3,    _______,
@@ -193,6 +208,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
         _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______
     ),
+//*/
 
     [_RESET1] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
@@ -226,7 +242,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
         _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______
     ),
-//*/
 };
 
 void keyboard_post_init_user() {
