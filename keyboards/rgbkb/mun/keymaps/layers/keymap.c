@@ -41,78 +41,142 @@ enum keymap_keycodes {
 #define FN_ESC   LT(_FN, KC_ESC)
 
 // French chars
-/*
 enum unicode_names {
-  EAIG,
-  EAIG_M,
-  EGRV,
-  EGRV_M,
-  ECRC,
-  ECRC_M,
-  ETRM,
-  ETRM_M,
-  OCRC,
-  OCRC_M,
-  AGRV,
-  AGRV_M,
-  CCDL,
-  CCDL_M,
+  EAIG_MIN,
+  EAIG_MAJ,
+  EGRV_MIN,
+  EGRV_MAJ,
+  ECRC_MIN,
+  ECRC_MAJ,
+  ETRM_MIN,
+  ETRM_MAJ,
+  OCRC_MIN,
+  OCRC_MAJ,
+  AGRV_MIN,
+  AGRV_MAJ,
+  CCDL_MIN,
+  CCDL_MAJ,
 };
 
 const uint32_t PROGMEM unicode_map[] = {
-  [EAIG]  = 0x00E9,     // 0  é
-  [EAIG_M] = 0x00C9,    // 1  É
-  [EGRV]  = 0x00E8,     // 2  è
-  [EGRV_M] = 0x00C8,    // 3  È
-  [ECRC]  = 0x00EA,     // 4  ê
-  [ECRC_M] = 0x00CA,    // 5  Ê
-  [ETRM]  = 0x00EB,     // 6  ë
-  [ETRM_M] = 0x00CB,    // 7  Ë
-  [OCRC]  = 0x00F4,     // 8  ô
-  [OCRC_M] = 0x00D4,    // 9  Ô
-  [AGRV]  = 0x00E0,     // 10 Â
-  [AGRV_M] = 0x00C0,    // 11 À
-  [CCDL]  = 0x00E7,     // 12 ç
-  [CCDL_M] = 0x00C7,    // 13 Ç
+  [EAIG_MIN] = 0x00E9,    // 0  é
+  [EAIG_MAJ] = 0x00C9,    // 1  É
+  [EGRV_MIN] = 0x00E8,    // 2  è
+  [EGRV_MAJ] = 0x00C8,    // 3  È
+  [ECRC_MIN] = 0x00EA,    // 4  ê
+  [ECRC_MAJ] = 0x00CA,    // 5  Ê
+  [ETRM_MIN] = 0x00EB,    // 6  ë
+  [ETRM_MAJ] = 0x00CB,    // 7  Ë
+  [OCRC_MIN] = 0x00F4,    // 8  ô
+  [OCRC_MAJ] = 0x00D4,    // 9  Ô
+  [AGRV_MIN] = 0x00E0,    // 10 Â
+  [AGRV_MAJ] = 0x00C0,    // 11 À
+  [CCDL_MIN] = 0x00E7,    // 12 ç
+  [CCDL_MAJ] = 0x00C7,    // 13 Ç
 };
+/*
 
-#define EAIG_m  UC(0x00E9)     // 0  é
-#define EAIG_M  UC(0x00C9)    // 1  É
-#define EGRV_m  UC(0x00E8)     // 2  è
-#define EGRV_M  UC(0x00C8)    // 3  È
-#define ECRC_m  UC(0x00EA)     // 4  ê
-#define ECRC_M  UC(0x00CA)    // 5  Ê
-#define ETRM_m  UC(0x00EB)     // 6  ë
-#define ETRM_M  UC(0x00CB)    // 7  Ë
-#define OCRC_m  UC(0x00F4)     // 8  ô
-#define OCRC_M  UC(0x00D4)    // 9  Ô
-#define AGRV_m  UC(0x00E0)     // 10 Â
-#define AGRV_M  UC(0x00C0)    // 11 À
-#define CCDL_m  UC(0x00E7)     // 12 ç
-#define CCDL_M  UC(0x00C7)    // 13 Ç
+#define EAIG_MIN  UC(0x00E9)    // 0  é
+#define EAIG_MAJ  UC(0x00C9)    // 1  É
+#define EGRV_MIN  UC(0x00E8)    // 2  è
+#define EGRV_MAJ  UC(0x00C8)    // 3  È
+#define ECRC_MIN  UC(0x00EA)    // 4  ê
+#define ECRC_MAJ  UC(0x00CA)    // 5  Ê
+#define ETRM_MIN  UC(0x00EB)    // 6  ë
+#define ETRM_MAJ  UC(0x00CB)    // 7  Ë
+#define OCRC_MIN  UC(0x00F4)    // 8  ô
+#define OCRC_MAJ  UC(0x00D4)    // 9  Ô
+#define AGRV_MIN  UC(0x00E0)    // 10 Â
+#define AGRV_MAJ  UC(0x00C0)    // 11 À
+#define CCDL_MIN  UC(0x00E7)    // 12 ç
+#define CCDL_MAJ  UC(0x00C7)    // 13 Ç
+
+#define EAIG_MIN  0x00E9    // 0  é
+#define EAIG_MAJ  0x00C9    // 1  É
+#define EGRV_MIN  0x00E8    // 2  è
+#define EGRV_MAJ  0x00C8    // 3  È
+#define ECRC_MIN  0x00EA    // 4  ê
+#define ECRC_MAJ  0x00CA    // 5  Ê
+#define ETRM_MIN  0x00EB    // 6  ë
+#define ETRM_MAJ  0x00CB    // 7  Ë
+#define OCRC_MIN  0x00F4    // 8  ô
+#define OCRC_MAJ  0x00D4    // 9  Ô
+#define AGRV_MIN  0x00E0    // 10 Â
+#define AGRV_MAJ  0x00C0    // 11 À
+#define CCDL_MIN  0x00E7    // 12 ç
+#define CCDL_MAJ  0x00C7    // 13 Ç
+
+#define EAIG_MIN  send_unicode_hex_string("00E9")    // 0  é
+#define EAIG_MAJ  send_unicode_hex_string("00C9")    // 1  É
+#define EGRV_MIN  send_unicode_hex_string("00E8")    // 2  è
+#define EGRV_MAJ  send_unicode_hex_string("00C8")    // 3  È
+#define ECRC_MIN  send_unicode_hex_string("00EA")    // 4  ê
+#define ECRC_MAJ  send_unicode_hex_string("00CA")    // 5  Ê
+#define ETRM_MIN  send_unicode_hex_string("00EB")    // 6  ë
+#define ETRM_MAJ  send_unicode_hex_string("00CB")    // 7  Ë
+#define OCRC_MIN  send_unicode_hex_string("00F4")    // 8  ô
+#define OCRC_MAJ  send_unicode_hex_string("00D4")    // 9  Ô
+#define AGRV_MIN  send_unicode_hex_string("00E0")    // 10 Â
+#define AGRV_MAJ  send_unicode_hex_string("00C0")    // 11 À
+#define CCDL_MIN  send_unicode_hex_string("00E7")    // 12 ç
+#define CCDL_MAJ  send_unicode_hex_string("00C7")    // 13 Ç
+
+// WRONG
+#define EAIG_MIN  send_unicode_string("é")
+#define EAIG_MAJ  send_unicode_string("É")
+#define EGRV_MIN  send_unicode_string("è")
+#define EGRV_MAJ  send_unicode_string("È")
+#define ECRC_MIN  send_unicode_string("ê")
+#define ECRC_MAJ  send_unicode_string("Ê")
+#define ETRM_MIN  send_unicode_string("ë")
+#define ETRM_MAJ  send_unicode_string("Ë")
+#define OCRC_MIN  send_unicode_string("ô")
+#define OCRC_MAJ  send_unicode_string("Ô")
+#define AGRV_MIN  send_unicode_string("à")
+#define AGRV_MAJ  send_unicode_string("À")
+#define CCDL_MIN  send_unicode_string("ç")
+#define CCDL_MAJ  send_unicode_string("Ç")
+
+#define EAIG_MIN  UC(L'é')
+#define EAIG_MAJ  UC(L'É')
+#define EGRV_MIN  UC(L'è')
+#define EGRV_MAJ  UC(L'È')
+#define ECRC_MIN  UC(L'ê')
+#define ECRC_MAJ  UC(L'Ê')
+#define ETRM_MIN  UC(L'ë')
+#define ETRM_MAJ  UC(L'Ë')
+#define OCRC_MIN  UC(L'ô')
+#define OCRC_MAJ  UC(L'Ô')
+#define AGRV_MIN  UC(L'à')
+#define AGRV_MAJ  UC(L'À')
+#define CCDL_MIN  UC(L'ç')
+#define CCDL_MAJ  UC(L'Ç')
+
+enum custom_keycodes {
+  EAIG_MIN,
+  EAIG_MAJ,
+  EGRV_MIN,
+  EGRV_MAJ,
+  ECRC_MIN,
+  ECRC_MAJ,
+  ETRM_MIN,
+  ETRM_MAJ,
+  OCRC_MIN,
+  OCRC_MAJ,
+  AGRV_MIN,
+  AGRV_MAJ,
+  CCDL_MIN,
+  CCDL_MAJ,
+};
 //*/
-#define EAIG_m  0x00E9     // 0  é
-#define EAIG_M  0x00C9    // 1  É
-#define EGRV_m  0x00E8     // 2  è
-#define EGRV_M  0x00C8    // 3  È
-#define ECRC_m  0x00EA     // 4  ê
-#define ECRC_M  0x00CA    // 5  Ê
-#define ETRM_m  0x00EB     // 6  ë
-#define ETRM_M  0x00CB    // 7  Ë
-#define OCRC_m  0x00F4     // 8  ô
-#define OCRC_M  0x00D4    // 9  Ô
-#define AGRV_m  0x00E0     // 10 Â
-#define AGRV_M  0x00C0    // 11 À
-#define CCDL_m  0x00E7     // 12 ç
-#define CCDL_M  0x00C7    // 13 Ç
 
-#define EAIG    XP(EAIG_m, EAIG_M)
-#define EGRV    XP(EGRV_m, EGRV_M)
-#define ECRC    XP(ECRC_m, ECRC_M)
-#define ETRM    XP(ETRM_m, ETRM_M)
-#define OCRC    XP(OCRC_m, OCRC_M)
-#define AGRV    XP(AGRV_m, AGRV_M)
-#define CCDL    XP(CCDL_m, CCDL_M)
+#define EAIG    XP(EAIG_MIN, EAIG_MAJ)
+#define EGRV    XP(EGRV_MIN, EGRV_MAJ)
+#define ECRC    XP(ECRC_MIN, ECRC_MAJ)
+#define ETRM    XP(ETRM_MIN, ETRM_MAJ)
+#define OCRC    XP(OCRC_MIN, OCRC_MAJ)
+#define AGRV    XP(AGRV_MIN, AGRV_MAJ)
+#define CCDL    XP(CCDL_MIN, CCDL_MAJ)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -222,9 +286,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_ACCENTS] = LAYOUT(
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, KC_1   , KC_2   , KC_3   , ECRC   , EAIG   , _______, _______, EAIG   , ECRC   , KC_1   , KC_2   , KC_3,    _______,
-        _______, KC_4   , KC_5   , KC_6   , OCRC   , EGRV   , _______, _______, EGRV   , OCRC   , KC_4   , KC_5   , KC_6,    _______,   
-        UC_MOD , KC_7   , KC_8   , KC_9   , CCDL   , AGRV   ,_______, _______,  AGRV   , CCDL   , KC_7   , KC_8   , KC_9,    UC_MOD ,
+        _______, KC_1   , KC_2   , KC_3   , ECRC   , EAIG   , _______, _______, EAIG   , ECRC   , KC_1   , KC_2   , KC_3   , _______,
+        UC_MOD , KC_4   , KC_5   , KC_6   , OCRC   , EGRV   , _______, _______, EGRV   , OCRC   , KC_4   , KC_5   , KC_6   , UC_MOD ,   
+        _______, KC_7   , KC_8   , KC_9   , CCDL   , AGRV   ,_______, _______,  AGRV   , CCDL   , KC_7   , KC_8   , KC_9   , _______,
         RESET1 , KC_0   , KC_LALT, _______, _______, _______, _______, _______, _______, _______, _______, KC_LALT, KC_0,    RESET1 ,
 
         _______, _______, _______, _______,                                                       _______, _______, _______, _______,
@@ -289,6 +353,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 touch_encoder_toggle();
             }
             return false;  // Skip all further processing of this key
+
+        // Unicode character processing
+        /*
+        case EAIG_MIN:
+            send_unicode_string("é");
+            return false;
+        case EAIG_MAJ:
+            send_unicode_string("É");
+            return false;
+        case EGRV_MIN:
+            send_unicode_string("è");
+            return false;
+        case EGRV_MAJ:
+            send_unicode_string("È");
+            return false;
+        case ECRC_MIN:
+            send_unicode_string("ê");
+            return false;
+        case ECRC_MAJ:
+            send_unicode_string("Ê");
+            return false;
+        case ETRM_MIN:
+            send_unicode_string("ë");
+            return false;
+        case ETRM_MAJ:
+            send_unicode_string("Ë");
+            return false;
+        case OCRC_MIN:
+            send_unicode_string("ô");
+            return false;
+        case OCRC_MAJ:
+            send_unicode_string("Ô");
+            return false;
+        case AGRV_MIN:
+            send_unicode_string("à");
+            return false;
+        case AGRV_MAJ:
+            send_unicode_string("À");
+            return false;
+        case CCDL_MIN:
+            send_unicode_string("ç");
+            return false;
+        case CCDL_MAJ:
+            send_unicode_string("Ç");
+            return false;
+        */
         default:
             return true;  // Process all other keycodes normally
     }
